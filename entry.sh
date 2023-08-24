@@ -1,7 +1,11 @@
 #!/bin/sh
 
 # Get the latest shim digest
-curl -sSfL "https://hub.docker.com/v2/namespaces/rumpl/repositories/containerd-wasi-shims/tags?page_size=1&ordering=last_updated" | jq -r '.results[0].digest' > /latest-shims
+if [ "$1" == "install" ] && [ "$2" == "latest" ]; then
+    curl -sSfL "https://hub.docker.com/v2/namespaces/rumpl/repositories/containerd-wasi-shims/tags?page_size=1&ordering=last_updated" | jq -r '.results[0].digest' > /latest-shims
+else
+    echo "" > /latest-shims
+fi
 
 # Copy over requires files
 /nsenter1 /usr/bin/tee /var/lib/wasm/latest-shims < /latest-shims > /dev/null

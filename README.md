@@ -11,7 +11,7 @@ Make sure to enable "Use containerd for pulling and storing images" in the Docke
 Then from a terminal run
 
 ```bash
-alias dd-shim-mngr="docker run --rm --privileged --pid=host jorgeprendes420/docker-desktop-shim-manager:latest"
+alias dd-shim-mngr="docker run --rm -i --privileged --pid=host jorgeprendes420/docker-desktop-shim-manager:latest"
 dd-shim-mngr help # show help
 dd-shim-mngr ls # list all available wasm shims
 dd-shim-mngr install latest # install latest upstream shims
