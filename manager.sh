@@ -1,3 +1,5 @@
+#!/bin/sh
+
 alias docker="/var/lib/wasm/docker -H unix:///run/desktop/docker.sock"
 
 case "$1" in

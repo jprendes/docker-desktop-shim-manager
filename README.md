@@ -4,7 +4,7 @@ A container image to install and uninstall WebAssembly shims in Docker Desktop.
 
 ## Usage
 
-Make sure to ename "Use containerd for pulling and storing images" in the Docker Desktop settings.
+Make sure to enable "Use containerd for pulling and storing images" in the Docker Desktop settings.
 
 ![Docker Desktop Settings](settings-screenshot.png)
 
