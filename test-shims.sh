@@ -14,10 +14,10 @@ function test_slight() {
     echo -e "\033[0;34mruntime:\033[1m slight\033[0m"
 
     docker run -d --interactive --quiet --name=wasm-shim-test \
-        --platform=wasi/wasm32 \
+        --platform=wasi/wasm \
         --runtime=io.containerd.slight.v1 \
         --publish=3000:3000 \
-        ghcr.io/deislabs/containerd-wasm-shims/examples/slight-rust-hello:v0.9.0 / > /dev/null
+        ghcr.io/deislabs/containerd-wasm-shims/examples/slight-rust-hello:v0.10.0 / > /dev/null
 
     curl_check_eq 200 'hello world!' http://localhost:3000/hello
     curl_check_eq 204 '' http://localhost:3000/set -XPUT -d "some value"
@@ -30,10 +30,10 @@ function test_spin() {
     echo -e "\033[0;34mruntime:\033[1m spin\033[0m"
 
     docker run -d --interactive --quiet --name=wasm-shim-test \
-        --platform=wasi/wasm32 \
-        --runtime=io.containerd.spin.v1 \
+        --platform=wasi/wasm \
+        --runtime=io.containerd.spin.v2 \
         --publish=3000:80 \
-        ghcr.io/deislabs/containerd-wasm-shims/examples/spin-rust-hello:v0.9.0 / > /dev/null
+        ghcr.io/deislabs/containerd-wasm-shims/examples/spin-rust-hello:v0.10.0 / > /dev/null
 
     curl_check_eq 200 'Hello world from Spin!' http://localhost:3000/hello
 
@@ -44,10 +44,10 @@ function test_wws() {
     echo -e "\033[0;34mruntime:\033[1m wws\033[0m"
 
     docker run -d --interactive --quiet --name=wasm-shim-test \
-        --platform=wasi/wasm32 \
+        --platform=wasi/wasm \
         --runtime=io.containerd.wws.v1 \
         --publish=3000:3000 \
-        ghcr.io/deislabs/containerd-wasm-shims/examples/wws-js-hello:v0.9.0 / > /dev/null
+        ghcr.io/deislabs/containerd-wasm-shims/examples/wws-js-hello:v0.10.0 / > /dev/null
 
     curl_check_regex 200 'Hello from Wasm Workers Server' http://localhost:3000/hello
 
@@ -58,10 +58,10 @@ function test_lunatic() {
     echo -e "\033[0;34mruntime:\033[1m lunatic\033[0m"
 
     docker run -d --interactive --quiet --name=wasm-shim-test \
-        --platform=wasi/wasm32 \
+        --platform=wasi/wasm \
         --runtime=io.containerd.lunatic.v1 \
         --publish=3000:3000 \
-        ghcr.io/deislabs/containerd-wasm-shims/examples/lunatic-submillisecond:v0.9.0 / > /dev/null
+        ghcr.io/deislabs/containerd-wasm-shims/examples/lunatic-submillisecond:v0.10.0 / > /dev/null
 
     curl_check_eq 200 'Hello :)' http://localhost:3000/hello
 
